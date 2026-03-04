@@ -1,0 +1,15 @@
+[project]
+name = "file_analyzer"
+version = "1.0.0"
+description = "Консольная утилита для анализа файлов в директории"
+authors = [{name = "Vladimir1488", email = "baklanov031@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []  
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+file-analyzer = "file_analyzer.main:main"
