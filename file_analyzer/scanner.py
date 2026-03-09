@@ -7,9 +7,17 @@ def scan_directory(path):
     for root, _, files in os.walk(path):
         for file in files:
             full_path = os.path.join(root, file)
-            size = os.path.getsize(full_path)
-            _, ext = os.path.splitext(file)
-            yield (full_path, size, ext if ext else "no_extension")
+            try:
+                size = os.path.getsize(full_path)
+                _, ext = os.path.splitext(file)
+                yield {
+                    'path': full_path,
+                    'name': file,
+                    'size': size,
+                    'extension': ext if ext else "no_extension"
+                }
+            except (PermissionError, OSError):
+                continue  # Пропускаем файлы, к которым нет доступа
 
 def get_file_info(full_path):
     size = os.path.getsize(full_path)
